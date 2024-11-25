@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app_cubit_hive/feature/home/manager/cubit/notes_cubit.dart';
-import 'package:note_app_cubit_hive/feature/home/view/widgets/custom_app_bar.dart';
-import 'package:note_app_cubit_hive/feature/home/view/widgets/note_box.dart';
+import 'package:note_app_cubit_hive/feature/home/view/widgets/home_app_bar.dart';
 import 'package:note_app_cubit_hive/feature/home/view/widgets/notes_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -20,7 +19,7 @@ class HomeViewBody extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      CustomAppBar(),
+                      HomeAppBar(),
                       SizedBox(height: 16.0),
                     ],
                   ),

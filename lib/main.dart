@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app_cubit_hive/core/utils/routers/routers.dart';
 import 'package:note_app_cubit_hive/feature/home/manager/cubit/notes_cubit.dart';
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
   runApp(DevicePreview(builder: (context) => const MyApp()));
 }
 
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => NotesCubit(),
       child: MaterialApp.router(
+
+        theme: ThemeData(brightness: Brightness.light ,),
+        
         debugShowCheckedModeBanner: false,
         routerConfig: router,
       ),
