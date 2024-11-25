@@ -4,16 +4,27 @@ import 'package:note_app_cubit_hive/core/utils/constants.dart';
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final int maxLines;
+  final Function(String?)? onSaved;
 
   const CustomTextField({
     super.key,
     required this.hintText,
     this.maxLines = 1,
+    this.onSaved,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onSaved: onSaved,
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return 'Text field cannot be empty';
+        } else {
+          return null;
+        }
+      },
+      style: const TextStyle(color: KPrimaryColor),
       cursorColor: KPrimaryColor,
       maxLines: maxLines,
       decoration: InputDecoration(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app_cubit_hive/core/utils/hive_service.dart';
 import 'package:note_app_cubit_hive/core/utils/routers/routers.dart';
-import 'package:note_app_cubit_hive/feature/home/manager/cubit/notes_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,15 +15,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NotesCubit(),
-      child: MaterialApp.router(
-        theme: ThemeData(
-          brightness: Brightness.light,
-        ),
-        debugShowCheckedModeBanner: false,
-        routerConfig: router,
+    return MaterialApp.router(
+      theme: ThemeData(
+        brightness: Brightness.light,
       ),
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
     );
   }
 }
