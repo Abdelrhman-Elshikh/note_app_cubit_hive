@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:note_app_cubit_hive/feature/home/model/note_model.dart';
+import 'package:note_app_cubit_hive/core/model/note_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 class HiveService {
