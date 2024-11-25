@@ -1,12 +1,14 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app_cubit_hive/core/utils/hive_service.dart';
 import 'package:note_app_cubit_hive/core/utils/routers/routers.dart';
 import 'package:note_app_cubit_hive/feature/home/manager/cubit/notes_cubit.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  runApp(DevicePreview(builder: (context) => const MyApp()));
+  WidgetsFlutterBinding.ensureInitialized();
+  await HiveService().intiHiveService();
+  // runApp(DevicePreview(builder: (context) => const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,9 +20,9 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => NotesCubit(),
       child: MaterialApp.router(
-
-        theme: ThemeData(brightness: Brightness.light ,),
-        
+        theme: ThemeData(
+          brightness: Brightness.light,
+        ),
         debugShowCheckedModeBanner: false,
         routerConfig: router,
       ),
