@@ -1,20 +1,23 @@
+import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
 part 'note_model.g.dart';
 
 @HiveType(typeId: 0)
-class NoteModel extends HiveObject {
+class NoteModel extends HiveObject with EquatableMixin {
   @HiveField(0)
-  final String title;
+  String title;
   @HiveField(1)
-  final String description;
+  String description;
   @HiveField(2)
   final String date;
-
 
   NoteModel({
     required this.title,
     required this.description,
     required this.date,
   });
+
+  @override
+  List<Object?> get props => [title, description];
 }

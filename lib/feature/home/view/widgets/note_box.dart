@@ -15,7 +15,7 @@ class NoteBox extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Navigate to the note details page
-        GoRouter.of(context).push(KEditNote);
+        GoRouter.of(context).push(KEditNote , extra: note);
       },
       child: Card(
         color: Colors.grey,

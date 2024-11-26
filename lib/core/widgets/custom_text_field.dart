@@ -2,20 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:note_app_cubit_hive/core/utils/constants.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String hintText;
+  final String? hintText;
   final int maxLines;
   final Function(String?)? onSaved;
+  final Function(String)? onChanged;
+  final String? initialValue;
 
   const CustomTextField({
     super.key,
-    required this.hintText,
+    this.hintText,
     this.maxLines = 1,
     this.onSaved,
+    this.onChanged,
+    this.initialValue,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
+      onChanged: onChanged,
       onSaved: onSaved,
       validator: (value) {
         if (value?.isEmpty ?? true) {
@@ -31,7 +37,7 @@ class CustomTextField extends StatelessWidget {
         border: buildBorder(),
         enabledBorder: buildBorder(),
         focusedBorder: buildBorder(KPrimaryColor),
-        hintText: 'Enter your text',
+        hintText: hintText,
         hintStyle: const TextStyle(color: KPrimaryColor),
       ),
     );
