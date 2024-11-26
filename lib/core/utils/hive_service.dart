@@ -7,10 +7,10 @@ class HiveService {
   HiveService();
 
   intiHiveService() async {
-    await Hive.initFlutter();
     final dir = await getApplicationDocumentsDirectory();
     await Hive.initFlutter(dir.path);
-    await Hive.openBox(KNoteBox);
     Hive.registerAdapter(NoteModelAdapter());
+    // Hive.openBox<NoteModel>(KNoteBox);
+    await Hive.openBox<NoteModel>(KNoteBox);
   }
 }

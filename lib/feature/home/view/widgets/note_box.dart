@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:note_app_cubit_hive/core/model/note_model.dart';
 import 'package:note_app_cubit_hive/core/utils/routers/routes.dart';
+import 'package:note_app_cubit_hive/feature/home/manager/notes_cubit/notes_cubit.dart';
 
 class NoteBox extends StatelessWidget {
-  const NoteBox({super.key});
+  const NoteBox({super.key, required this.note});
+
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -25,33 +30,40 @@ class NoteBox extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text(
-                  'Title',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                Text(
+                  note.title,
+                  style: const TextStyle(
+                      fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 18),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Flexible(
+                    Flexible(
                       child: Text(
-                        'description Loram Style for the title of the fiption Loram Style for the title of the fit box in the title box of the fit box ofdescription Loram Style for the title of the fit box in the title box of the fit box of',
-                        style: TextStyle(
+                        note.description,
+                        style: const TextStyle(
                           fontSize: 18,
                         ),
                       ),
                     ),
                     const SizedBox(width: 16),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          note.delete();
+                          BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                        },
                         icon: const Icon(
                           Icons.delete_rounded,
                           size: 30,
                         )),
                   ],
                 ),
-                const Text(textAlign: TextAlign.end, 'DATE')
+                Text(
+                  textAlign: TextAlign.end,
+                  note.date,
+                )
               ],
             ),
           ),
